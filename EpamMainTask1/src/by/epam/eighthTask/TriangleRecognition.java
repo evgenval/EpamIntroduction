@@ -59,9 +59,9 @@ public class TriangleRecognition {
 		
 		double AB, AC, BC, biggestSide;
 		
-		AB = Math.sqrt(Math.pow(TWO, (A.getX() - B.getX()))+Math.pow(TWO, (A.getY() - B.getY())));
-		AC = Math.sqrt(Math.pow(TWO, (A.getX() - C.getX()))+Math.pow(TWO, (A.getY() - C.getY())));
-		BC = Math.sqrt(Math.pow(TWO, (B.getX() - C.getX()))+Math.pow(TWO, (B.getY() - C.getY())));
+		AB = Math.sqrt(Math.pow((A.getX() - B.getX()), TWO)+Math.pow((A.getY() - B.getY()), TWO));
+		AC = Math.sqrt(Math.pow((A.getX() - C.getX()), TWO)+Math.pow((A.getY() - C.getY()), TWO));
+		BC = Math.sqrt(Math.pow((B.getX() - C.getX()), TWO)+Math.pow((B.getY() - C.getY()), TWO));
 		
 		biggestSide = AB;
 		
@@ -77,15 +77,15 @@ public class TriangleRecognition {
 			}
 			
 			if(biggestSide == AB) {
-				if(Math.pow(TWO, AB) == (Math.pow(TWO, AC) + Math.pow(TWO, BC))){
+				if(Math.pow(AB, TWO) == (Math.pow(AC, TWO) + Math.pow(BC, TWO))){
 					System.out.println("This triangle is rectangular");
 				}
 			} else if(biggestSide == AC) {
-				if(Math.pow(TWO, AC) == (Math.pow(TWO, AB) + Math.pow(TWO, BC))) {
+				if(Math.pow(AC, TWO) == (Math.pow(AB, TWO) + Math.pow(BC, TWO))) {
 					System.out.println("This triangle is rectangular");
 				}
 			} else if(biggestSide == BC) {
-				if(Math.pow(TWO, BC) == (Math.pow(TWO, AC) + Math.pow(TWO, AB))) {
+				if(Math.pow(BC, TWO) == (Math.pow(AC, TWO) + Math.pow(AB, TWO))) {
 					System.out.println("This triangle is rectangular");
 				}
 			}

@@ -18,7 +18,7 @@ public class AreaCalculator {
 	}
 
 	public void setRadius_2(int radius_2) {
-		if(this.radius_1>radius_2) {
+		if(this.radius_1 > radius_2) {
 			this.radius_2 = radius_2;
 		} else {
 			System.out.println("Error. The Second Radius is more then the first radius.");

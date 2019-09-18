@@ -40,7 +40,8 @@ public class Calendar {
 
 	public void setYear(int year) {
 		if(year > 0) {
-			if(month == 2 && chechingForLeapYear(year) && day>29 || month == 2 && !chechingForLeapYear(year) && day > 28) {
+			if(month == 2 && chechingForLeapYear(year) && day>29 
+					|| month == 2 && !chechingForLeapYear(year) && day > 28) {
 				System.out.println("ERROR!!!");
 				System.exit(0);
 			}else {
