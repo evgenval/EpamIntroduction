@@ -10,8 +10,6 @@ public class CheckingLetterForAttachmentToVowels {
 	private static final char NONCAPITAL_A = 'a';
 	private static final char CAPITAL_E = 'E';
 	private static final char NONCAPITAL_E = 'e';
-	private static final char CAPITAL_Y = 'Y';
-	private static final char NONCAPITAL_Y = 'y';
 	private static final char CAPITAL_U = 'U';
 	private static final char NONCAPITAL_U = 'u';
 	private static final char CAPITAL_I = 'I';
@@ -28,7 +26,7 @@ public class CheckingLetterForAttachmentToVowels {
 	}
 	
 	public void chechingForAttachmentToVowelsFirst() {
-		char[] vowels = {NONCAPITAL_A, NONCAPITAL_E, NONCAPITAL_I, NONCAPITAL_O, NONCAPITAL_U, NONCAPITAL_Y};
+		char[] vowels = {NONCAPITAL_A, NONCAPITAL_E, NONCAPITAL_I, NONCAPITAL_O, NONCAPITAL_U};
 		char a = Character.toLowerCase(letter);
 		for(int i = 0; i < vowels.length; i++) {
 			if(a == vowels[i]) {
@@ -45,8 +43,6 @@ public class CheckingLetterForAttachmentToVowels {
 			System.out.println("Vowel");
 		}else if(letter == CAPITAL_E || letter == NONCAPITAL_E) {
 			System.out.println("Vowel");
-		}else if(letter == CAPITAL_Y || letter == NONCAPITAL_Y) {
-			System.out.println("Vowel");
 		}else if(letter == CAPITAL_U || letter == NONCAPITAL_U) {
 			System.out.println("Vowel");
 		}else if(letter == CAPITAL_I || letter == NONCAPITAL_I) {
@@ -62,13 +58,11 @@ public class CheckingLetterForAttachmentToVowels {
 		switch(letter) {
 		case CAPITAL_A:
 		case CAPITAL_E:
-		case CAPITAL_Y:
 		case CAPITAL_U:
 		case CAPITAL_I:
 		case CAPITAL_O:
 		case NONCAPITAL_A:
 		case NONCAPITAL_E:
-		case NONCAPITAL_Y:
 		case NONCAPITAL_U:
 		case NONCAPITAL_I:
 		case NONCAPITAL_O:
@@ -81,7 +75,7 @@ public class CheckingLetterForAttachmentToVowels {
 	}
 	
 	public void chechingForAttachmentToVowelsFourth() {
-		char[] vowels = {CAPITAL_A, CAPITAL_E, CAPITAL_I, CAPITAL_O, CAPITAL_U, CAPITAL_Y};
+		char[] vowels = {CAPITAL_A, CAPITAL_E, CAPITAL_I, CAPITAL_O, CAPITAL_U};
 		char a = Character.toUpperCase(letter);
 		for(int i = 0; i < vowels.length; i++) {
 			if(a == vowels[i]) {
