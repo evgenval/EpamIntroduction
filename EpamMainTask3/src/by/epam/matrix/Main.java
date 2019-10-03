@@ -7,7 +7,7 @@ public class Main {
 		Matrix matrix = new Matrix();
 		
 		matrix.makeMatrix();
-		matrix.seeMatrix();
+		
 		matrix.findArithmeticMeanValue();
 		matrix.findGeometricMeanValue();
 		matrix.findMaxAndMin();

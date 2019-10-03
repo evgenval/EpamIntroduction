@@ -58,6 +58,8 @@ public class Matrix {
 				matrix[i][j] = random.nextDouble();
 			}
 		}
+		
+		seeMatrix(matrix);
 	}
 	
 	public void findMaxAndMin() {
@@ -105,37 +107,281 @@ public class Matrix {
 	}
 	
 	public void findPositionOfFirstLocalMin() {
-		int i = 0;
-		int j = 1;
-		
-		for(; i < this.getLength(); i++) {
-			for(; j < this.getWidth() - 1; j++) {
-				if(matrix[i][j - 1] > matrix[i][j] && matrix[i][j + 1] > matrix[i][j]) {
-					System.out.println("The position of first local min is " + i + " row " + j + " place.");
-					break;
+		int row = -1, colomn = -1;
+		for(int i = 0;  i < this.getLength(); i++) {
+			for(int j = 0; j < this.getWidth(); j++) {
+				if(this.getLength() == 1) {
+					if(this.getWidth() != 1) {
+						if(j == 0) {
+							if(matrix[i][j+1] > matrix[i][j]) {
+								row = i;
+								colomn = j;
+								break;
+							}
+						} else if(j < this.getWidth() - 1){
+							if(matrix[i][j - 1] > matrix[i][j] 
+									&& matrix[i][j + 1] > matrix[i][j]) {
+								row = i;
+								colomn = j;
+								break;
+							}
+						} else if(j == this.getWidth() - 1) {
+							if(matrix[i][j - 1] > matrix[i][j]) {
+								row = i;
+								colomn = j;
+								break;
+							}
+						}
+					} else {
+						System.out.println("That is very small matrix");
+						break;
+					}
+				}else {
+					if(this.getWidth() != 1) {
+						if(i == 0) {
+							if(j == 0) {
+								if(matrix[i][j+1] > matrix[i][j] && matrix[i+1][j] > matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+								}
+							} else if(j < this.getWidth() - 1){
+								if(matrix[i][j - 1] > matrix[i][j] 
+										&& matrix[i][j + 1] > matrix[i][j] 
+												&& matrix[i+1][j] > matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+								}
+							} else if(j == this.getWidth() - 1) {
+								if(matrix[i][j - 1] > matrix[i][j] && matrix[i+1][j] > matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+								}
+							}
+						} else if(i < this.getLength() - 1 && i != 0) {
+							if(j == 0) {
+								if(matrix[i][j+1] > matrix[i][j] 
+										&& matrix[i+1][j] > matrix[i][j]
+												&& matrix[i - 1][j] > matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+							}
+							} else if(j < this.getWidth() - 1){
+								if(matrix[i][j - 1] > matrix[i][j] 
+										&& matrix[i][j + 1] > matrix[i][j] 
+												&& matrix[i+1][j] > matrix[i][j]
+														&& matrix[i - 1][j] > matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+								}
+							} else if(j == this.getWidth() - 1) {
+								if(matrix[i][j - 1] > matrix[i][j] 
+										&& matrix[i + 1][j] > matrix[i][j]
+												&& matrix[i - 1][j] > matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+								}
+							}
+						} else if(i == this.getLength() - 1) {
+							if(j == 0) {
+								if(matrix[i][j+1] > matrix[i][j] && matrix[i - 1][j] > matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+								}
+							} else if(j < this.getWidth() - 1){
+								if(matrix[i][j - 1] > matrix[i][j] 
+										&& matrix[i][j + 1] > matrix[i][j] 
+												&& matrix[i - 1][j] > matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+								}
+							} else if(j == this.getWidth() - 1) {
+								if(matrix[i][j - 1] > matrix[i][j] && matrix[i - 1][j] > matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+								}
+							}
+						}
+				} else {
+					if(j == 0) {
+						if(matrix[i+1][j] > matrix[i][j]) {
+							row = i;
+							colomn = j;
+							break;
+						}
+					} else if(j < this.getWidth() - 1 && j != 0){
+						if(matrix[i - 1][j] > matrix[i][j] 
+								&& matrix[i+1][j] > matrix[i][j]) {
+							row = i;
+							colomn = j;
+							break;
+						}
+					} else if(j == this.getWidth() - 1) {
+						if(matrix[i - 1][j] > matrix[i][j]) {
+							row = i;
+							colomn = j;
+							break;
+						}
+					}
 				}
 			}
+			}
+		}
+		if(row == -1 && colomn == -1) {
+			System.out.println("There is no local min");
+		} else {
+			System.out.println("The position of first local min is " + row + " row and " + colomn + " colomn.");
 		}
 	}
 	
 	public void findPositionOfFirstLocalMax() {
-		int i = 0;
-		int j = 1;
-		
-		for(; i < this.getLength(); i++) {
-			for(; j < this.getWidth() - 1; j++) {
-				if(matrix[i][j - 1] < matrix[i][j] && matrix[i][j + 1] < matrix[i][j]) {
-					System.out.println("The position of first local max is " + i + " row " + j + " place.");
-					break;
+		int row = -1, colomn = -1;
+		for(int i = 0;  i < this.getLength(); i++) {
+			for(int j = 0; j < this.getWidth(); j++) {
+				if(this.getLength() == 1) {
+					if(this.getWidth() != 1) {
+						if(j == 0) {
+							if(matrix[i][j+1] < matrix[i][j]) {
+								row = i;
+								colomn = j;
+								break;
+							}
+						} else if(j < this.getWidth() - 1){
+							if(matrix[i][j - 1] < matrix[i][j] 
+									&& matrix[i][j + 1] < matrix[i][j]) {
+								row = i;
+								colomn = j;
+								break;
+							}
+						} else if(j == this.getWidth() - 1) {
+							if(matrix[i][j - 1] < matrix[i][j]) {
+								row = i;
+								colomn = j;
+								break;
+							}
+						}
+					} else {
+						System.out.println("That is very small matrix");
+						break;
+					}
+				}else {
+					if(this.getWidth() != 1) {
+						if(i == 0) {
+							if(j == 0) {
+								if(matrix[i][j+1] < matrix[i][j] && matrix[i+1][j] < matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+								}
+							} else if(j < this.getWidth() - 1){
+								if(matrix[i][j - 1] < matrix[i][j] 
+										&& matrix[i][j + 1] < matrix[i][j] 
+												&& matrix[i+1][j] < matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+								}
+							} else if(j == this.getWidth() - 1) {
+								if(matrix[i][j - 1] < matrix[i][j] && matrix[i+1][j] < matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+								}
+							}
+						} else if(i < this.getLength() - 1 && i != 0) {
+							if(j == 0) {
+								if(matrix[i][j+1] < matrix[i][j] 
+										&& matrix[i+1][j] < matrix[i][j]
+												&& matrix[i - 1][j] < matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+							}
+							} else if(j < this.getWidth() - 1){
+								if(matrix[i][j - 1] < matrix[i][j] 
+										&& matrix[i][j + 1] < matrix[i][j] 
+												&& matrix[i+1][j] < matrix[i][j]
+														&& matrix[i - 1][j] < matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+								}
+							} else if(j == this.getWidth() - 1) {
+								if(matrix[i][j - 1] < matrix[i][j] 
+										&& matrix[i + 1][j] < matrix[i][j]
+												&& matrix[i - 1][j] < matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+								}
+							}
+						} else if(i == this.getLength() - 1) {
+							if(j == 0) {
+								if(matrix[i][j+1] < matrix[i][j] && matrix[i - 1][j] < matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+								}
+							} else if(j < this.getWidth() - 1){
+								if(matrix[i][j - 1] < matrix[i][j] 
+										&& matrix[i][j + 1] < matrix[i][j] 
+												&& matrix[i - 1][j] < matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+								}
+							} else if(j == this.getWidth() - 1) {
+								if(matrix[i][j - 1] < matrix[i][j] && matrix[i - 1][j] < matrix[i][j]) {
+									row = i;
+									colomn = j;
+									break;
+								}
+							}
+						}
+				} else {
+					if(j == 0) {
+						if(matrix[i+1][j] < matrix[i][j]) {
+							row = i;
+							colomn = j;
+							break;
+						}
+					} else if(j < this.getWidth() - 1 && j != 0){
+						if(matrix[i - 1][j] < matrix[i][j] 
+								&& matrix[i+1][j] < matrix[i][j]) {
+							row = i;
+							colomn = j;
+							break;
+						}
+					} else if(j == this.getWidth() - 1) {
+						if(matrix[i - 1][j] < matrix[i][j]) {
+							row = i;
+							colomn = j;
+							break;
+						}
+					}
 				}
 			}
+			}
+		}
+		if(row == -1 && colomn == -1) {
+			System.out.println("There is no local max");
+		} else {
+			System.out.println("The position of first local max is " + row + " row and " + colomn + " colomn.");
 		}
 	}
 	
-	public void seeMatrix() {
-		for(int i = 0; i < this.getLength(); i++) {
-			for(int j = 0; j < this.getWidth(); j++) {
-				System.out.print(matrix[i][j] + " ");
+	public void seeMatrix(double matrixx[][]) {
+		for(int i = 0; i < matrixx.length; i++) {
+			for(int j = 0; j < matrixx[i].length; j++) {
+				System.out.print(matrixx[i][j] + " ");
 			}
 			System.out.println();
 		}
@@ -143,18 +389,26 @@ public class Matrix {
 	
 	public void transposeMatrix() {
 		
-		if(this.getLength() < this.getWidth()) {
-			System.out.println("Cann't transposed");
-			System.exit(0);
-		}
-		for(int i = 0; i < this.getLength(); i++) {
-			for(int k = i+1; k < this.getWidth(); k++) {
-				double temp = matrix[i][k];
-				matrix[i][k] = matrix[k][i];
-				matrix[k][i] = temp;
+		if(this.getLength() == this.getWidth()) {
+			for(int i = 0; i < this.getLength(); i++) {
+				for(int k = i+1; k < this.getWidth(); k++) {
+					double temp = matrix[i][k];
+					matrix[i][k] = matrix[k][i];
+					matrix[k][i] = temp;
+				}
 			}
+			System.out.println("That is transpose matrix");
+			seeMatrix(matrix);
+		} else if(this.getLength() == 1 || this.getWidth() == 1) {
+			System.out.println("Error!!! Cann't  transpose those small matrix");
+		} else {
+			double[][] transposedMatrix = new double[this.getWidth()][this.getLength()];
+			for(int i = 0; i < this.getLength(); i++) {
+				for(int j = 0; j < this.getWidth(); j++) {
+					transposedMatrix[j][i] = matrix[i][j];
+				}
+			}
+			seeMatrix(transposedMatrix);
 		}
-		System.out.println("That is transpose matrix");
-		seeMatrix();
 	}
 }
