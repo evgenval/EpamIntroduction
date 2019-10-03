@@ -106,7 +106,7 @@ public class Matrix {
 		System.out.println("The geometric mean value is " + Math.pow(geometricValue, number));
 	}
 	
-	public void findPositionOfFirstLocalMin() {
+	public double findPositionOfFirstLocalMin() {
 		int row = -1, colomn = -1;
 		for(int i = 0;  i < this.getLength(); i++) {
 			for(int j = 0; j < this.getWidth(); j++) {
@@ -116,25 +116,31 @@ public class Matrix {
 							if(matrix[i][j+1] > matrix[i][j]) {
 								row = i;
 								colomn = j;
-								break;
+								System.out.println("The position of first local min is " 
+										+ row+ " row and " + colomn + " colomn.");
+								return matrix[i][j];
 							}
 						} else if(j < this.getWidth() - 1){
 							if(matrix[i][j - 1] > matrix[i][j] 
 									&& matrix[i][j + 1] > matrix[i][j]) {
 								row = i;
 								colomn = j;
-								break;
+								System.out.println("The position of first local min is " 
+										+ row+ " row and " + colomn + " colomn.");
+								return matrix[i][j];
 							}
 						} else if(j == this.getWidth() - 1) {
 							if(matrix[i][j - 1] > matrix[i][j]) {
 								row = i;
 								colomn = j;
-								break;
+								System.out.println("The position of first local min is " 
+										+ row+ " row and " + colomn + " colomn.");
+								return matrix[i][j];
 							}
 						}
 					} else {
 						System.out.println("That is very small matrix");
-						break;
+						return 0;
 					}
 				}else {
 					if(this.getWidth() != 1) {
@@ -143,7 +149,9 @@ public class Matrix {
 								if(matrix[i][j+1] > matrix[i][j] && matrix[i+1][j] > matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local min is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 								}
 							} else if(j < this.getWidth() - 1){
 								if(matrix[i][j - 1] > matrix[i][j] 
@@ -151,13 +159,17 @@ public class Matrix {
 												&& matrix[i+1][j] > matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local min is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 								}
 							} else if(j == this.getWidth() - 1) {
 								if(matrix[i][j - 1] > matrix[i][j] && matrix[i+1][j] > matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local min is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 								}
 							}
 						} else if(i < this.getLength() - 1 && i != 0) {
@@ -167,7 +179,9 @@ public class Matrix {
 												&& matrix[i - 1][j] > matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local min is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 							}
 							} else if(j < this.getWidth() - 1){
 								if(matrix[i][j - 1] > matrix[i][j] 
@@ -176,7 +190,9 @@ public class Matrix {
 														&& matrix[i - 1][j] > matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local min is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 								}
 							} else if(j == this.getWidth() - 1) {
 								if(matrix[i][j - 1] > matrix[i][j] 
@@ -184,7 +200,9 @@ public class Matrix {
 												&& matrix[i - 1][j] > matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local min is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 								}
 							}
 						} else if(i == this.getLength() - 1) {
@@ -192,7 +210,9 @@ public class Matrix {
 								if(matrix[i][j+1] > matrix[i][j] && matrix[i - 1][j] > matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local min is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 								}
 							} else if(j < this.getWidth() - 1){
 								if(matrix[i][j - 1] > matrix[i][j] 
@@ -200,13 +220,17 @@ public class Matrix {
 												&& matrix[i - 1][j] > matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local min is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 								}
 							} else if(j == this.getWidth() - 1) {
 								if(matrix[i][j - 1] > matrix[i][j] && matrix[i - 1][j] > matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local min is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 								}
 							}
 						}
@@ -215,34 +239,37 @@ public class Matrix {
 						if(matrix[i+1][j] > matrix[i][j]) {
 							row = i;
 							colomn = j;
-							break;
+							System.out.println("The position of first local min is " 
+									+ row+ " row and " + colomn + " colomn.");
+							return matrix[i][j];
 						}
 					} else if(j < this.getWidth() - 1 && j != 0){
 						if(matrix[i - 1][j] > matrix[i][j] 
 								&& matrix[i+1][j] > matrix[i][j]) {
 							row = i;
 							colomn = j;
-							break;
+							System.out.println("The position of first local min is " 
+									+ row+ " row and " + colomn + " colomn.");
+							return matrix[i][j];
 						}
 					} else if(j == this.getWidth() - 1) {
 						if(matrix[i - 1][j] > matrix[i][j]) {
 							row = i;
 							colomn = j;
-							break;
+							System.out.println("The position of first local min is " 
+									+ row+ " row and " + colomn + " colomn.");
+							return matrix[i][j];
 						}
 					}
 				}
 			}
 			}
 		}
-		if(row == -1 && colomn == -1) {
-			System.out.println("There is no local min");
-		} else {
-			System.out.println("The position of first local min is " + row + " row and " + colomn + " colomn.");
-		}
+		
+		return -1;
 	}
 	
-	public void findPositionOfFirstLocalMax() {
+	public double findPositionOfFirstLocalMax() {
 		int row = -1, colomn = -1;
 		for(int i = 0;  i < this.getLength(); i++) {
 			for(int j = 0; j < this.getWidth(); j++) {
@@ -252,25 +279,31 @@ public class Matrix {
 							if(matrix[i][j+1] < matrix[i][j]) {
 								row = i;
 								colomn = j;
-								break;
+								System.out.println("The position of first local max is " 
+										+ row+ " row and " + colomn + " colomn.");
+								return matrix[i][j];
 							}
 						} else if(j < this.getWidth() - 1){
 							if(matrix[i][j - 1] < matrix[i][j] 
 									&& matrix[i][j + 1] < matrix[i][j]) {
 								row = i;
 								colomn = j;
-								break;
+								System.out.println("The position of first local max is " 
+										+ row+ " row and " + colomn + " colomn.");
+								return matrix[i][j];
 							}
 						} else if(j == this.getWidth() - 1) {
 							if(matrix[i][j - 1] < matrix[i][j]) {
 								row = i;
 								colomn = j;
-								break;
+								System.out.println("The position of first local max is " 
+										+ row+ " row and " + colomn + " colomn.");
+								return matrix[i][j];
 							}
 						}
 					} else {
 						System.out.println("That is very small matrix");
-						break;
+						return 0;
 					}
 				}else {
 					if(this.getWidth() != 1) {
@@ -279,7 +312,9 @@ public class Matrix {
 								if(matrix[i][j+1] < matrix[i][j] && matrix[i+1][j] < matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local max is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 								}
 							} else if(j < this.getWidth() - 1){
 								if(matrix[i][j - 1] < matrix[i][j] 
@@ -287,13 +322,17 @@ public class Matrix {
 												&& matrix[i+1][j] < matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local max is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 								}
 							} else if(j == this.getWidth() - 1) {
 								if(matrix[i][j - 1] < matrix[i][j] && matrix[i+1][j] < matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local max is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 								}
 							}
 						} else if(i < this.getLength() - 1 && i != 0) {
@@ -303,7 +342,9 @@ public class Matrix {
 												&& matrix[i - 1][j] < matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local max is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 							}
 							} else if(j < this.getWidth() - 1){
 								if(matrix[i][j - 1] < matrix[i][j] 
@@ -312,7 +353,9 @@ public class Matrix {
 														&& matrix[i - 1][j] < matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local max is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 								}
 							} else if(j == this.getWidth() - 1) {
 								if(matrix[i][j - 1] < matrix[i][j] 
@@ -320,7 +363,9 @@ public class Matrix {
 												&& matrix[i - 1][j] < matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local max is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 								}
 							}
 						} else if(i == this.getLength() - 1) {
@@ -328,7 +373,9 @@ public class Matrix {
 								if(matrix[i][j+1] < matrix[i][j] && matrix[i - 1][j] < matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local max is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 								}
 							} else if(j < this.getWidth() - 1){
 								if(matrix[i][j - 1] < matrix[i][j] 
@@ -336,13 +383,17 @@ public class Matrix {
 												&& matrix[i - 1][j] < matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local max is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 								}
 							} else if(j == this.getWidth() - 1) {
 								if(matrix[i][j - 1] < matrix[i][j] && matrix[i - 1][j] < matrix[i][j]) {
 									row = i;
 									colomn = j;
-									break;
+									System.out.println("The position of first local max is " 
+											+ row+ " row and " + colomn + " colomn.");
+									return matrix[i][j];
 								}
 							}
 						}
@@ -351,31 +402,43 @@ public class Matrix {
 						if(matrix[i+1][j] < matrix[i][j]) {
 							row = i;
 							colomn = j;
-							break;
+							System.out.println("The position of first local max is " 
+									+ row+ " row and " + colomn + " colomn.");
+							return matrix[i][j];
 						}
 					} else if(j < this.getWidth() - 1 && j != 0){
 						if(matrix[i - 1][j] < matrix[i][j] 
 								&& matrix[i+1][j] < matrix[i][j]) {
 							row = i;
 							colomn = j;
-							break;
+							System.out.println("The position of first local max is " 
+									+ row+ " row and " + colomn + " colomn.");
+							return matrix[i][j];
 						}
 					} else if(j == this.getWidth() - 1) {
 						if(matrix[i - 1][j] < matrix[i][j]) {
 							row = i;
 							colomn = j;
-							break;
+							System.out.println("The position of first local max is " 
+									+ row+ " row and " + colomn + " colomn.");
+							return matrix[i][j];
 						}
 					}
 				}
 			}
 			}
 		}
-		if(row == -1 && colomn == -1) {
+		return -1;
+	}
+	
+	public void findLocalMaxAndLocalMinInMatrix() {
+		if(findPositionOfFirstLocalMax() == -1) {
 			System.out.println("There is no local max");
-		} else {
-			System.out.println("The position of first local max is " + row + " row and " + colomn + " colomn.");
 		}
+		if(findPositionOfFirstLocalMin() == -1) {
+			System.out.println("There is no local min");
+		}
+		
 	}
 	
 	public void seeMatrix(double matrixx[][]) {
