@@ -14,6 +14,7 @@ import by.epam.playroom.domain.enums.ParameterForComparator;;
 public class Room{
 
 	private ArrayList<Toy> roomToys = new ArrayList<Toy>();
+	private 
 
 	public ArrayList<Toy> createRoom(int roomCapacity, double totalCost, AgeGroupType childAge, ArrayList<Toy> toys) {
 		double priceOfToys = 0.0;
@@ -32,13 +33,13 @@ public class Room{
 	public void sortToys(ParameterForComparator parameter) {
 		ComparatorForOneParameter comparator = new ComparatorForOneParameter(parameter);
 		Collections.sort(this.roomToys, comparator);
-		printToysOfRoom();
+		//printToysOfRoom();
 	}
 
 	public void sortToysByPriceAndAgeGroup() {
 		ComparatorForPriceAndAgeGroup comparator = new ComparatorForPriceAndAgeGroup();
 		Collections.sort(this.roomToys, comparator);
-		printToysOfRoom();
+		//printToysOfRoom();
 	}
 
 	public Toy findToyByPrice(double price) {
@@ -54,8 +55,7 @@ public class Room{
 		return null;
 	}
 
-	public Toy findToyByType(ToyTypes type) {
-		Toy toy = Factory.createToy(type, 0, AgeGroupType.OLDERGROUP, SizeType.MEDIUM);
+	/*public Toy findToyByType(ToyTypes type) {
 		ComparatorForOneParameter compare = new ComparatorForOneParameter(ParameterForComparator.TYPE);
 		for (Toy toyFromRoom : this.roomToys) {
 			if (compare.compare(toyFromRoom, toy) == 0) {
@@ -63,15 +63,9 @@ public class Room{
 				return toyFromRoom;
 			}
 		}
-		System.out.println("There is no such toys...");
-		return null;
-	}
 
-	public void printToysOfRoom() {
-		for (Toy toy : this.roomToys) {
-			System.out.println(toy.toString());
-		}
-	}
+		return null;
+	}*/
 
 	public ArrayList<Toy> getRoomToys() {
 		return roomToys;

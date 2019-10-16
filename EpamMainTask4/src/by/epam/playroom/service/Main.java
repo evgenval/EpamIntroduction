@@ -18,15 +18,15 @@ public class Main {
 		ReaderResource reader = new ReaderResource();
 		ArrayList<Toy> toys = reader.readFromFile(file);
 
-		Room room_1 = new Room();
+		/*Room room_1 = new Room();
 		room_1.createRoom(7, 3000.0, AgeGroupType.YOUNGERGROUP, toys);
 		room_1.printToysOfRoom();
-//		room_1.findToyByPrice(120.3);
-//		room_1.findToyByType(ToyTypes.CUBBE);
-//		room_1.sortToys(Parameter.PRICE);
-//		room_1.sortToys(Parameter.SIZE);
-//		room_1.sortToys(Parameter.TYPE);
-//		room_1.sortToysByPriceAndAgeGroup();
+		room_1.findToyByPrice(120.3);
+		room_1.findToyByType(ToyTypes.CUBBE);
+		room_1.sortToys(Parameter.PRICE);
+		room_1.sortToys(Parameter.SIZE);
+		room_1.sortToys(Parameter.TYPE);
+		room_1.sortToysByPriceAndAgeGroup();*/
 	}
 
 }
