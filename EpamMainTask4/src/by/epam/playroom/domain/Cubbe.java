@@ -1,22 +1,28 @@
 package by.epam.playroom.domain;
 
+import by.epam.playroom.domain.enums.AgeGroupType;
+import by.epam.playroom.domain.enums.ColorType;
+import by.epam.playroom.domain.enums.SizeType;
+import by.epam.playroom.domain.enums.ToyTypes;
+
 public class Cubbe extends Toy{
 	
-	private String color;
+	private static final ToyTypes toyType = ToyTypes.CUBBE;
+	private ColorType color;
 
 	public Cubbe() {
 		super();
 	}
 	
-	public Cubbe(String ageGroup, String size, int cost) {
-		super(ageGroup, size, cost);
+	public Cubbe(AgeGroupType ageGroup, SizeType size, double cost) {
+		super(toyType, ageGroup, size, cost);
 	}
 
-	public String getColor() {
+	public ColorType getColor() {
 		return color;
 	}
 
-	public void setColor(String color) {
+	public void setColor(ColorType color) {
 		this.color = color;
 	}
 

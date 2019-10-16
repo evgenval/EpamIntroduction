@@ -1,22 +1,28 @@
 package by.epam.playroom.domain;
 
+import by.epam.playroom.domain.enums.AgeGroupType;
+import by.epam.playroom.domain.enums.BallTypeOfGame;
+import by.epam.playroom.domain.enums.SizeType;
+import by.epam.playroom.domain.enums.ToyTypes;
+
 public class Ball extends Toy{
 	
-	private String typeOfGame;								// (football, basketball and etc.)
+	private static final ToyTypes toyType = ToyTypes.BALL;
+	private BallTypeOfGame typeOfGame;			// (football, basketball and etc.)
 
 	public Ball() {
 		super();
 	}
 	
-	public Ball(String ageGroup, String size, int cost) {
-		super(ageGroup, size, cost);
+	public Ball(AgeGroupType ageGroup, SizeType size, double cost) {
+		super(toyType, ageGroup, size, cost);
 	}
 
-	public String getTypeOfGame() {
+	public BallTypeOfGame getTypeOfGame() {
 		return typeOfGame;
 	}
 
-	public void setTypeOfGame(String typeOfGame) {
+	public void setTypeOfGame(BallTypeOfGame typeOfGame) {
 		this.typeOfGame = typeOfGame;
 	}
 

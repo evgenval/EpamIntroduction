@@ -1,22 +1,28 @@
 package by.epam.playroom.domain;
 
+import by.epam.playroom.domain.enums.AgeGroupType;
+import by.epam.playroom.domain.enums.CarAppointment;
+import by.epam.playroom.domain.enums.SizeType;
+import by.epam.playroom.domain.enums.ToyTypes;
+
 public class Car extends Toy{
 	
-	private String appointment;						//(police, fire engine and etc.)
+	private static final ToyTypes toyType = ToyTypes.CAR;
+	private CarAppointment appointment;						//(police, fire engine and etc.)
 
 	public Car() {
 		super();
 	}
 	
-	public Car(String ageGroup, String size, int cost) {
-		super(ageGroup, size, cost);
+	public Car(AgeGroupType ageGroup, SizeType size, double cost) {
+		super(toyType, ageGroup, size, cost);
 	}
 
-	public String getAppointment() {
+	public CarAppointment getAppointment() {
 		return appointment;
 	}
 
-	public void setAppointment(String appointment) {
+	public void setAppointment(CarAppointment appointment) {
 		this.appointment = appointment;
 	}
 

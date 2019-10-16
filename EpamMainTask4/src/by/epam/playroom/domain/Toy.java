@@ -1,38 +1,52 @@
 package by.epam.playroom.domain;
 
+import by.epam.playroom.domain.enums.AgeGroupType;
+import by.epam.playroom.domain.enums.SizeType;
+import by.epam.playroom.domain.enums.ToyTypes;
+
 public abstract class Toy {
 
-	private String ageGroup;
-	private String size;
-	private int cost;
+	private ToyTypes toyType;
+	private AgeGroupType ageGroup;
+	private SizeType size;
+	private double cost;
 	
 	public Toy() {
 		
 	}
 	
-	public Toy(String ageGroup, String size, int cost) {
+	public ToyTypes getToyType() {
+		return toyType;
+	}
+
+	public void setToyType(ToyTypes toyType) {
+		this.toyType = toyType;
+	}
+
+	public Toy(ToyTypes toyType, AgeGroupType ageGroup, SizeType size, double cost) {
+		this.toyType = toyType;
 		this.ageGroup = ageGroup;
 		this.size = size;
 		this.cost = cost;
 	}
 
-	public String getAgeGroup() {
+	public AgeGroupType getAgeGroup() {
 		return ageGroup;
 	}
 
-	public void setAgeGroup(String ageGroup) {
+	public void setAgeGroup(AgeGroupType ageGroup) {
 		this.ageGroup = ageGroup;
 	}
 
-	public String getSize() {
+	public SizeType getSize() {
 		return size;
 	}
 
-	public void setSize(String size) {
+	public void setSize(SizeType size) {
 		this.size = size;
 	}
 
-	public int getCost() {
+	public double getCost() {
 		return cost;
 	}
 
@@ -45,8 +59,11 @@ public abstract class Toy {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((ageGroup == null) ? 0 : ageGroup.hashCode());
-		result = prime * result + cost;
+		long temp;
+		temp = Double.doubleToLongBits(cost);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((size == null) ? 0 : size.hashCode());
+		result = prime * result + ((toyType == null) ? 0 : toyType.hashCode());
 		return result;
 	}
 
@@ -59,17 +76,13 @@ public abstract class Toy {
 		if (getClass() != obj.getClass())
 			return false;
 		Toy other = (Toy) obj;
-		if (ageGroup == null) {
-			if (other.ageGroup != null)
-				return false;
-		} else if (!ageGroup.equals(other.ageGroup))
+		if (ageGroup != other.ageGroup)
 			return false;
-		if (cost != other.cost)
+		if (Double.doubleToLongBits(cost) != Double.doubleToLongBits(other.cost))
 			return false;
-		if (size == null) {
-			if (other.size != null)
-				return false;
-		} else if (!size.equals(other.size))
+		if (size != other.size)
+			return false;
+		if (toyType != other.toyType)
 			return false;
 		return true;
 	}

@@ -1,15 +1,20 @@
 package by.epam.playroom.domain;
 
+import by.epam.playroom.domain.enums.AgeGroupType;
+import by.epam.playroom.domain.enums.SizeType;
+import by.epam.playroom.domain.enums.ToyTypes;
+
 public class Doll extends Toy{
 	
+	private static final ToyTypes toyType = ToyTypes.DOLL;
 	private boolean canSingTheSong;
 
 	public Doll() {
 		super();
 	}
 	
-	public Doll(String ageGroup, String size, int cost) {
-		super(ageGroup, size, cost);
+	public Doll(AgeGroupType ageGroup, SizeType size, double cost) {
+		super(toyType, ageGroup, size, cost);
 	}
 
 	public boolean isCanSingTheSong() {

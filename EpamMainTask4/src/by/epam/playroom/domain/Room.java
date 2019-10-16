@@ -1,203 +1,80 @@
 package by.epam.playroom.domain;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import by.epam.playroom.domain.enums.AgeGroupType;
 import by.epam.playroom.domain.enums.SizeType;
-import by.epam.playroom.inter.ToyOperation;
+import by.epam.playroom.domain.enums.ToyTypes;
+import by.epam.playroom.service.ComparatorForOneParameter;
+import by.epam.playroom.service.ComparatorForPriceAndAgeGroup;
+import by.epam.playroom.service.Factory;
+import by.epam.playroom.domain.enums.ParameterForComparator;;
 
-public class Room implements ToyOperation{
+public class Room{
 
-	private Toy[] toys;
-	private int money;
-	
-	public Room() {
-		
-	}
+	private ArrayList<Toy> roomToys = new ArrayList<Toy>();
 
-	public Toy[] getToys() {
-		return toys;
-	}
-
-
-	public void setToys(Toy[] toys) {
-		this.toys = toys;
-	}
-
-	public int getMoney() {
-		return money;
-	}
-
-	public void setMoney(int money) {
-		this.money = money;
-	}
-
-	public void makeRoomOfToys() {
-		
-	}
-
-	public static int findNumberOfLinesInFile() throws FileNotFoundException, IOException{
+	public ArrayList<Toy> createRoom(int roomCapacity, double totalCost, AgeGroupType childAge, ArrayList<Toy> toys) {
+		double priceOfToys = 0.0;
 		int counter = 0;
-		
-		Scanner scan = new Scanner(new FileReader("file.txt"));
-		
-		while(scan.hasNextLine()) {
-			scan.nextLine();
-			counter++;
-		}
-		
-		return counter;
-	}
-	
-	public void readToysFromFile() throws FileNotFoundException, IOException{
-		toys = new Toy[(findNumberOfLinesInFile() - 1)/4];
-		
-		Scanner scan = new Scanner(new FileReader("file.txt"));
-		try{
-			
-			for(int i = 0; i < findNumberOfLinesInFile(); i++) {
-				for(int j = 0; j < (findNumberOfLinesInFile() - 1)/4; j++) {
-					if(i == 0) {
-						this.setMoney(Integer.parseInt(scan.next()));
-					}
-					if(scan.equals("Ball")) {
-						Ball ball = new Ball(scan.next(), scan.next(), scan.nextInt());
-						toys[j] = ball;
-						j = j + 1;
-						i = i + 3;
-					} else if(scan.equals("Doll")) {
-						Doll doll = new Doll(scan.next(), scan.next(), scan.nextInt());
-						toys[j] = doll;
-						j = j + 1;
-						i = i + 3;
-					} else if(scan.equals("Car")) {
-						Car car = new Car(scan.next(), scan.next(), scan.nextInt());
-						toys[j] = car;
-						j = j + 1;
-						i = i + 3;
-					} else if(scan.equals("Cubbe")) {
-						Cubbe cubbe = new Cubbe(scan.next(), scan.next(), scan.nextInt());
-						toys[j] = cubbe;
-						j = j + 1;
-						i = i + 3;
-					}
-				}
+
+		for (Toy toy : toys) {
+			if (totalCost > priceOfToys && toy.getAgeGroup().equals(childAge) && roomCapacity > counter) {
+				this.roomToys.add(toy);
+				priceOfToys += toy.getCost();
+				counter++;
 			}
-		} finally {
-			
+		}
+		return roomToys;
+	}
+
+	public void sortToys(ParameterForComparator parameter) {
+		ComparatorForOneParameter comparator = new ComparatorForOneParameter(parameter);
+		Collections.sort(this.roomToys, comparator);
+		printToysOfRoom();
+	}
+
+	public void sortToysByPriceAndAgeGroup() {
+		ComparatorForPriceAndAgeGroup comparator = new ComparatorForPriceAndAgeGroup();
+		Collections.sort(this.roomToys, comparator);
+		printToysOfRoom();
+	}
+
+	public Toy findToyByPrice(double price) {
+		Toy toy = Factory.createToy(ToyTypes.BALL, price, AgeGroupType.MEDIUMGROUP, SizeType.BIG);
+		ComparatorForOneParameter compare = new ComparatorForOneParameter(ParameterForComparator.COST);
+		for (Toy toyFromRoom : this.roomToys) {
+			if (compare.compare(toyFromRoom, toy) == 0) {
+				System.out.println("You are looking for: " + toyFromRoom);
+				return toyFromRoom;
+			}
+		}
+		System.out.println("There is no such toys...");
+		return null;
+	}
+
+	public Toy findToyByType(ToyTypes type) {
+		Toy toy = Factory.createToy(type, 0, AgeGroupType.OLDERGROUP, SizeType.MEDIUM);
+		ComparatorForOneParameter compare = new ComparatorForOneParameter(ParameterForComparator.TYPE);
+		for (Toy toyFromRoom : this.roomToys) {
+			if (compare.compare(toyFromRoom, toy) == 0) {
+				System.out.println("You are looking for: " + toyFromRoom);
+				return toyFromRoom;
+			}
+		}
+		System.out.println("There is no such toys...");
+		return null;
+	}
+
+	public void printToysOfRoom() {
+		for (Toy toy : this.roomToys) {
+			System.out.println(toy.toString());
 		}
 	}
 
-	@Override
-	public void sortBySize() throws FileNotFoundException, IOException {
-		System.out.println("Sorted by size: ");
-		for(int i = 0; i < (findNumberOfLinesInFile() - 1)/4; i++) {
-			if(toys[i].getSize().equals(SizeType.SMALL)) {
-				System.out.println(toys[i].toString());
-			}
-		}
-		
-		for(int i = 0; i < (findNumberOfLinesInFile() - 1)/4; i++) {
-			if(toys[i].getSize().equals(SizeType.MEDIUM)) {
-				System.out.println(toys[i].toString());
-			}
-		}
-		
-		for(int i = 0; i < (findNumberOfLinesInFile() - 1)/4; i++) {
-			if(toys[i].getSize().equals(SizeType.BIG)) {
-				System.out.println(toys[i].toString());
-			}
-		}
-		
+	public ArrayList<Toy> getRoomToys() {
+		return roomToys;
 	}
-
-	@Override
-	public void find() throws FileNotFoundException, IOException {
-		int choice;
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Enter 0 if u wanna find small toys, "
-				+ "1 if u wanna find medium toys,"
-				+ " 2 if u wanna find big toys");
-		choice = scan.nextInt();
-		
-		for(int i = 0; i < (findNumberOfLinesInFile() - 1)/4; i++) {
-			if(choice == 0 && toys[i].getSize().equals(SizeType.SMALL)) {
-				System.out.println(toys[i].toString());
-			} else if(choice == 1 && toys[i].getSize().equals(SizeType.MEDIUM)) {
-				System.out.println(toys[i].toString());
-			} else if(choice == 2 && toys[i].getSize().equals(SizeType.BIG)) {
-				System.out.println(toys[i].toString());
-			}
-		}
-	}
-
-	@Override
-	public void sortBySizeAndAgeGroup() throws FileNotFoundException, IOException {
-		System.out.println("Sorted by size and age group: ");
-		for(int i = 0; i < (findNumberOfLinesInFile() - 1)/4; i++) {
-			if(toys[i].getSize().equals(SizeType.SMALL) 
-					&& toys[i].getAgeGroup().equals(AgeGroupType.YOUNGER_GROUP)) {
-				System.out.println(toys[i].toString());
-			}
-		}
-		for(int i = 0; i < (findNumberOfLinesInFile() - 1)/4; i++) {
-			if(toys[i].getSize().equals(SizeType.SMALL) 
-					&& toys[i].getAgeGroup().equals(AgeGroupType.MEDIUM_GROUP)) {
-				System.out.println(toys[i].toString());
-			}
-		}
-		for(int i = 0; i < (findNumberOfLinesInFile() - 1)/4; i++) {
-			if(toys[i].getSize().equals(SizeType.SMALL) 
-					&& toys[i].getAgeGroup().equals(AgeGroupType.OLDER_GROUP)) {
-				System.out.println(toys[i].toString());
-			}
-		}
-		for(int i = 0; i < (findNumberOfLinesInFile() - 1)/4; i++) {
-			if(toys[i].getSize().equals(SizeType.MEDIUM) 
-					&& toys[i].getAgeGroup().equals(AgeGroupType.YOUNGER_GROUP)) {
-				System.out.println(toys[i].toString());
-			}
-		}
-		for(int i = 0; i < (findNumberOfLinesInFile() - 1)/4; i++) {
-			if(toys[i].getSize().equals(SizeType.MEDIUM) 
-					&& toys[i].getAgeGroup().equals(AgeGroupType.MEDIUM_GROUP)) {
-				System.out.println(toys[i].toString());
-			}
-		}
-		for(int i = 0; i < (findNumberOfLinesInFile() - 1)/4; i++) {
-			if(toys[i].getSize().equals(SizeType.MEDIUM) 
-					&& toys[i].getAgeGroup().equals(AgeGroupType.OLDER_GROUP)) {
-				System.out.println(toys[i].toString());
-			}
-		}
-		for(int i = 0; i < (findNumberOfLinesInFile() - 1)/4; i++) {
-			if(toys[i].getSize().equals(SizeType.BIG) 
-					&& toys[i].getAgeGroup().equals(AgeGroupType.YOUNGER_GROUP)) {
-				System.out.println(toys[i].toString());
-			}
-		}
-		for(int i = 0; i < (findNumberOfLinesInFile() - 1)/4; i++) {
-			if(toys[i].getSize().equals(SizeType.BIG) 
-					&& toys[i].getAgeGroup().equals(AgeGroupType.MEDIUM_GROUP)) {
-				System.out.println(toys[i].toString());
-			}
-		}
-		for(int i = 0; i < (findNumberOfLinesInFile() - 1)/4; i++) {
-			if(toys[i].getSize().equals(SizeType.BIG) 
-					&& toys[i].getAgeGroup().equals(AgeGroupType.OLDER_GROUP)) {
-				System.out.println(toys[i].toString());
-			}
-		}
-	}
-
-	@Override
-	public String toString() {
-		return "Room [" + (toys != null ? "toys=" + Arrays.toString(toys) : "") + "]";
-	}
-	
 	
 }

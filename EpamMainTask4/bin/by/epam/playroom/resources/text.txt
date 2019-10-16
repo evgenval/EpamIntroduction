@@ -1,0 +1,12 @@
+Doll cost: 120.3 ageGroup: YOUNGERGROUP size: SMALL
+Ball cost: 12 ageGroup: MEDIUMGROUP size: BIG
+Cube cost: 30.2 ageGroup: YOUNGERGROUP size: MEDIUM
+Car cost: 300 ageGroup: OLDERGROUP size: BIG
+Doll cost: 111.3 ageGroup: YOUNGERGROUP size: SMALL
+Doll cost: 120.3 ageGroup: YOUNGERGROUP size: SMALL
+Ball cost: 12 ageGroup: MEDIUMGROUP size: BIG
+Cube cost: 300.2 ageGroup: YOUNGERGROUP size: MEDIUM
+Car cost: 300 ageGroup: OLDERGROUP size: SMALL
+Ball cost: 12, ageGroup: MEDIUMGROUP size: BIG
+Cube cost: 30.2 ageGroup: YOUNGERGROUP size: MEDIUM
+Car cost: 300 ageGroup: OLDERGROUP size: BIG
