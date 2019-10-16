@@ -4,6 +4,6 @@ public enum CarAppointment {
 
 	POLICE,
 	AMBULANCE,
-	FIRE_ENGINE,
+	FIREENGINE,
 	CIVIL;
 }

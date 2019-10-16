@@ -14,8 +14,9 @@ public class Ball extends Toy{
 		super();
 	}
 	
-	public Ball(AgeGroupType ageGroup, SizeType size, double cost) {
+	public Ball(AgeGroupType ageGroup, SizeType size, double cost, BallTypeOfGame ballGame) {
 		super(toyType, ageGroup, size, cost);
+		this.typeOfGame = ballGame;
 	}
 
 	public BallTypeOfGame getTypeOfGame() {

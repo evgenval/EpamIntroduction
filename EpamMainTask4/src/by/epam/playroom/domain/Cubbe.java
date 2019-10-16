@@ -14,8 +14,9 @@ public class Cubbe extends Toy{
 		super();
 	}
 	
-	public Cubbe(AgeGroupType ageGroup, SizeType size, double cost) {
+	public Cubbe(AgeGroupType ageGroup, SizeType size, double cost, ColorType color) {
 		super(toyType, ageGroup, size, cost);
+		this.color = color;
 	}
 
 	public ColorType getColor() {

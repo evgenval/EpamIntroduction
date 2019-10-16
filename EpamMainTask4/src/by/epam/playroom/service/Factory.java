@@ -6,25 +6,27 @@ import by.epam.playroom.domain.Cubbe;
 import by.epam.playroom.domain.Doll;
 import by.epam.playroom.domain.Toy;
 import by.epam.playroom.domain.enums.AgeGroupType;
+import by.epam.playroom.domain.enums.BallTypeOfGame;
+import by.epam.playroom.domain.enums.CarAppointment;
+import by.epam.playroom.domain.enums.ColorType;
 import by.epam.playroom.domain.enums.SizeType;
 import by.epam.playroom.domain.enums.ToyTypes;
 
 public class Factory {
-
-	public static Toy createToy(ToyTypes toyType, double cost, AgeGroupType ageGroupType, SizeType sizeType) {
-		
-		switch(toyType) {
-			case BALL:
-				return new Ball(ageGroupType, sizeType, cost);
-			case DOLL:
-				return new Doll(ageGroupType, sizeType, cost);
-			case CUBBE: 
-				return new Cubbe(ageGroupType, sizeType, cost);
-			case CAR:
-				return new Car(ageGroupType, sizeType, cost);
-			default:
-				System.out.println("There is no such type of toy");
-				return null;
-		}
+	
+	public static Toy createToy(double cost, AgeGroupType ageGroupType, SizeType sizeType, BallTypeOfGame ballGame) {
+		return new Ball(ageGroupType, sizeType, cost, ballGame);
+	}
+	
+	public static Toy createToy(double cost, AgeGroupType ageGroupType, SizeType sizeType, ColorType color) {
+		return new Cubbe(ageGroupType, sizeType, cost, color);
+	}
+	
+	public static Toy createToy(double cost, AgeGroupType ageGroupType, SizeType sizeType, boolean singSong) {
+		return new Doll(ageGroupType, sizeType, cost, singSong);
+	}
+	
+	public static Toy createToy(double cost, AgeGroupType ageGroupType, SizeType sizeType, CarAppointment appointment) {
+		return new Car(ageGroupType, sizeType, cost, appointment);
 	}
 }

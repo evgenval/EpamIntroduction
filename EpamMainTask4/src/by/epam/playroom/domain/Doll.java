@@ -13,8 +13,9 @@ public class Doll extends Toy{
 		super();
 	}
 	
-	public Doll(AgeGroupType ageGroup, SizeType size, double cost) {
+	public Doll(AgeGroupType ageGroup, SizeType size, double cost, boolean singSong) {
 		super(toyType, ageGroup, size, cost);
+		this.canSingTheSong = singSong;
 	}
 
 	public boolean isCanSingTheSong() {

@@ -14,8 +14,9 @@ public class Car extends Toy{
 		super();
 	}
 	
-	public Car(AgeGroupType ageGroup, SizeType size, double cost) {
+	public Car(AgeGroupType ageGroup, SizeType size, double cost, CarAppointment appointment) {
 		super(toyType, ageGroup, size, cost);
+		this.appointment = appointment;
 	}
 
 	public CarAppointment getAppointment() {
@@ -30,7 +31,5 @@ public class Car extends Toy{
 	public String toString() {
 		return "Car [" + (appointment != null ? "appointment=" + appointment : "") + "]";
 	}
-	
-	
 	
 }
